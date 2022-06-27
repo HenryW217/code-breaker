@@ -14,6 +14,13 @@ public class CodeBreaker {
     //TODO Print out instruction for the player, and give them the
     // block enter their first guess;
 
+    System.out.println("CODE BREAKER");
+    System.out.println("(Try to break the code.)");
+    System.out.println("\nINSTRUCTIONS");
+    System.out.println("- A numerical code made up of four digits will be created.");
+    System.out.println("- Each digit will be either 0, 1, 2, 3, 4, 5, 6, 7, 8, or 9. No digits will be repeated");
+    System.out.println("- Attempt to break the code by entering a four-digit number that contains four different digits matching those listed above.");
+
     //TODO link the guess to program;
 
     //TODO i = 7, use i-- the guess, go back to loop;
