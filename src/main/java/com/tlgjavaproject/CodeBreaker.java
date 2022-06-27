@@ -1,6 +1,14 @@
 package com.tlgjavaproject;
 
 public class CodeBreaker {
+    /*Terms:
+    The system generated 4 digit #, ref as "answer";
+    If we are able to
+    Use "i" for
+
+     */
+
+
     //TODO Generate the answer, four digit non-duplicated, *use Map?;
 
     //TODO Print out instruction for the player, and give them the
