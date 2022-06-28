@@ -96,7 +96,7 @@ public class CodeBreaker {
         Collections.shuffle(list); // Shuffle the list;
         for (int a = 0; a < 4; a++) {
             answer.add(list.get(a));
-            System.out.println(answer); // TODO !!!This line is to test only, remove after code complete!!!
+            //System.out.println(answer); // TODO !!!This line is to test only, remove after code complete!!!
         }
     }
 
