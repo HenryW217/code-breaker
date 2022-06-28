@@ -3,6 +3,7 @@ package com.tlgjavaproject;
 
 import java.util.*;
 
+
 public class CodeBreaker {
     /*Terms:
     The system generated 4 digit #, ref as "answer";
@@ -11,35 +12,40 @@ public class CodeBreaker {
     playerEntry is the guesses the player entered;
 
      */
+    private static int guessLeft = 7;
+    private static ArrayList answer = new ArrayList();
+    private static ArrayList guessNum = new ArrayList();
 
 
-    //TODO Generate the answer, four digit non-duplicated, *use Map?; (Henry)
-    private final List<Answer> answer;
-        ArrayList<Integer> list = new ArrayList<Integer>();
-    for (int r = 0; r < 10; r++){
-        list.add(r);
-    } // To generate an Array list from 0 to 9;
+    public static void main(String[] args) {
+
+
+        CodeBreaker playerGuess = new CodeBreaker();
+        // I took the ones you entered, should we add \n for last three lines?
+        System.out.println("CODE BREAKER");
+        System.out.println("(Try to break the code.)");
+        System.out.println("\nINSTRUCTIONS");
+        System.out.println("- A numerical code made up of four digits will be created.");
+        System.out.println("- Each digit will be either 0, 1, 2, 3, 4, 5, 6, 7, 8, or 9. No digits will be repeated");
+        System.out.println("- Attempt to break the code by entering a four-digit number that contains four different digits matching those listed above.");
+        System.out.println("\nPlease enter a four-digit number below then click 'Enter', no duplicated numbers.");
+        System.out.println("You have 7 opportunities to win the game. Let's play!");
+
+        //TODO Generate the answer, four digit non-duplicated, *use Map?; (Henry)
+        ArrayList list = new ArrayList();    // To generate an Array list from 0 to 9;
+
+        for (int l = 0; l < 10; l++)    // "l" for the 0 - 9 list;
+            list.add(l);
+
         Collections.shuffle(list); // Shuffle the list;
-    int a = list.get(0);
-    int b = list.get(1);
-    int c = list.get(2);
-    int d = list.get(3);
-
-    Map<> answerMap = new HashMap<>(); // put the four-digit numbers into their location.
-    answerMap.put(a,w);
-    answerMap.put(b,x);
-    answerMap.put(c,y);
-    answerMap.put(d,z);
-
+        for (int a = 0; a < 4; a++){
+            answer.add(list.get(a));
+            System.out.println(answer); // TODO !!!This line is to test only, remove after code complete!!!
+        }
+    }
     //TODO Print out instruction for the player, and give them the
-    // block enter their first guess; (Henry)
+    // block enter their first guess; (Paul)
 
-    System.out.println("CODE BREAKER");
-    System.out.println("(Try to break the code.)");
-    System.out.println("\nINSTRUCTIONS");
-    System.out.println("- A numerical code made up of four digits will be created.");
-    System.out.println("- Each digit will be either 0, 1, 2, 3, 4, 5, 6, 7, 8, or 9. No digits will be repeated");
-    System.out.println("- Attempt to break the code by entering a four-digit number that contains four different digits matching those listed above.");
 
     //TODO link the guess to program;
 
