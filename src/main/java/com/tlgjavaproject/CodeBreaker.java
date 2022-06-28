@@ -25,7 +25,7 @@ public class CodeBreaker {
         int[] attemptScore = new int[3];  //The score of the latest attempt.
 
 
-        CodeBreaker playerGuess = new CodeBreaker(list());
+        CodeBreaker playerGuess = new CodeBreaker();
         // I took the ones you entered, should we add \n for last three lines?
         System.out.println("CODE BREAKER");
         System.out.println("(Try to break the code.)");
@@ -100,7 +100,7 @@ public class CodeBreaker {
         }
     }
 
-    //TODO Optionals:
+    //TODO Optionals: TBD
     //TODO Use pop up windows for all;
     //TODO Print out guesses left and full history with %dA%dB
 }
