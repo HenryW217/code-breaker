@@ -2,7 +2,9 @@ package com.tlgjavaproject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class CodeBreaker {
     /*Terms:
@@ -50,16 +52,16 @@ public class CodeBreaker {
         }
 
         // Henry added: use Scanner to take input to a list.
-        ArrayList input = new ArrayList();
-        Scanner sc = new Scanner(System.in);
-
-        for(int i = 0; i < 4; i++){
-            input.add(sc.nextInt());
+//        ArrayList input = new ArrayList();
+        do {
+            Scanner sc = new Scanner(System.in);
+            int a = sc.nextInt();
+            List<Integer> input = sc.next("\\d{4}")
+                    .chars()
+                    .mapToObj((value) -> (value - '0'))
+                    .collect(Collectors.toList());
             System.out.println(input);// TODO !!!This line is to test only, remove after code complete!!!
-            input.clear();
-        }
-
-
+        } while (true);
 
 
 //
