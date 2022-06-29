@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CodeBreaker {
 
-    public static int attemptsLeft = 3;
+    public static int attemptsLeft = 7;
     public static ArrayList answer = new ArrayList();
     public static ArrayList input = new ArrayList();
     private static int aCount = 0;
