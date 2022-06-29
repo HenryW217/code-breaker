@@ -1,9 +1,6 @@
 package com.tlgjavaproject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CodeBreaker {
@@ -16,6 +13,11 @@ public class CodeBreaker {
     private static int guessLeft = 7;
     private static ArrayList answer = new ArrayList();
     private static ArrayList input = new ArrayList();
+
+    private static int aCount = 0;
+    private static int bCount = 0;
+
+
 
 
     public static void main(String[] args) {
@@ -38,7 +40,6 @@ public class CodeBreaker {
         System.out.println("\nPlease enter a four-digit number below then click 'Enter', no duplicated numbers.");
         System.out.println("You have 7 opportunities to win the game. Let's play!");
 
-        //TODO Generate the answer, four digit non-duplicated, *use Map?; (Henry)
         ArrayList list = new ArrayList();    // To generate an Array list from 0 to 9;
 
         for (int l = 0; l < 10; l++)    // "l" for the 0 - 9 list;
@@ -47,21 +48,18 @@ public class CodeBreaker {
         Collections.shuffle(list); // Shuffle the list;
         for (int a = 0; a < 4; a++) {
             answer.add(list.get(a));
-            System.out.println(answer); // TODO !!!This line is to test only, remove after code complete!!!
-            input.clear(); // Need to ask Nick, won't clear previous entry.
-        }
 
-        // Henry added: use Scanner to take input to a list.
-//        ArrayList input = new ArrayList();
-        do {
-            Scanner sc = new Scanner(System.in);
-            int a = sc.nextInt();
-            List<Integer> input = sc.next("\\d{4}")
-                    .chars()
-                    .mapToObj((value) -> (value - '0'))
-                    .collect(Collectors.toList());
-            System.out.println(input);// TODO !!!This line is to test only, remove after code complete!!!
-        } while (true);
+        }
+        System.out.println("***Test purpose only, the answer is: " + answer + " ***"); // TODO !!!This line is to test only, remove after code complete!!!
+
+// Create the loop
+        while (true){
+            playerGuess.playerEntry();
+            playerGuess.compareInput();
+            input.clear();
+
+
+        }
 
 
 //
@@ -118,8 +116,36 @@ public class CodeBreaker {
 
 
     }
+    // Create method to get input Array list.
+    private void playerEntry() {
+        Scanner sc = new Scanner(System.in);
+        int entry = sc.nextInt();
 
-    //TODO Optionals:
-    //TODO Use pop up windows for all;
-    //TODO Print out guesses left and full history with %dA%dB
+        for (int i = 0; i < 4; i++) {
+            input.add(0, entry % 10);
+            entry = entry / 10;
+        }
+            System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
+
+    }
+
+
+// Create compare result method.
+    private void compareInput(){
+        for(int i = 0; i < 4; i++)
+            if (answer.get(i) == input.get(i))
+                aCount++;
+        for(Object i: answer)
+            for (Object j: input)
+                if (i == j)
+                    bCount++;
+        bCount = bCount - aCount;
+        System.out.printf("%dA%dB", aCount, bCount);
+        System.out.println();
+
+        aCount = 0;
+        bCount = 0;
+    }
+
+
 }
