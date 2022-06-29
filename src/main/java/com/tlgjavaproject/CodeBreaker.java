@@ -1,28 +1,22 @@
 package com.tlgjavaproject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CodeBreaker {
-    /*Terms:
-    The system generated 4 digit #, ref as "answer";
-    Use "i" for guesses count, the reason we count down is for future usage if we print "lives left";
-    playerEntry is the guesses the player entered;
 
-     */
-    private static int guessLeft = 7;
+    private static int attemptsLeft = 7;
     private static ArrayList answer = new ArrayList();
     private static ArrayList input = new ArrayList();
 
     private static int aCount = 0;
     private static int bCount = 0;
 
-    //test purposes
-    private static int count = 0;
+
 
 
     public static void main(String[] args) {
+
 
         CodeBreaker playerGuess = new CodeBreaker();
 
@@ -43,17 +37,86 @@ public class CodeBreaker {
         Collections.shuffle(list); // Shuffle the list;
         for (int a = 0; a < 4; a++) {
             answer.add(list.get(a));
-        }
-        //System.out.println("***Test purpose only, the answer is: " + answer + " ***"); // TODO !!!This line is to test only, remove after code complete!!!
 
+        }
+        System.out.println("***Test purpose only, the answer is: " + answer + " ***"); // TODO !!!This line is to test only, remove after code complete!!!
 
 // Create the loop
-        while (count < 7){
-            System.out.println("\n Guess a 4 digit number");
-            playerGuess.playerEntry();
-            playerGuess.compareInput();
-            input.clear();
-        }
+
+
+            do {
+                playerGuess.playerEntry();
+                if (answer.equals(input)){
+                    System.out.println("WELL DONE!");
+                    System.out.println("YOU BROKE THE CODE!");
+                    break;
+                }
+                playerGuess.compareInput();
+                if (attemptsLeft >1){
+                    System.out.println("Please try again, you have " + (attemptsLeft - 1) + " attempts left");
+                }
+                input.clear();
+                attemptsLeft--;
+
+            } while (attemptsLeft > 0);
+
+            if (attemptsLeft == 0){
+                System.out.println("THANKS FOR PLAYING. The answer is " + answer +".");
+            }
+
+
+
+//
+//
+//        //TODO Give player the block enter their first guess; (Paul)
+//
+//        Scanner console = new Scanner(System.in);
+//        while (console.hasNextLine() && guessLeft < 7) {
+//            System.out.println("Guess any number in the code");
+//            String guess = console.nextLine();
+//            while ((numGuess <= guessLeft) && (!codesBroken)) {
+//                System.out.println("\nATTEMPT #" + numGuess);
+//                System.out.print("Enter a 4-digit code: ");
+//
+//        //TODO i = 7, use i-- the guess, go back to loop; (Paul)
+//        //TODO check the guess, *use if/else, getValue from Map list? and loop back for
+//        // next guess; (Paul)
+//                //Generated some if/else statements. Need to figure out how to  link to Array List.
+//                if (attemptScore[0] != 1) {
+//                    System.out.print("SCORE: " + attemptScore[0] + " exact matches");
+//                }
+//                if (attemptScore[1] != 1) {
+//                    System.out.print(", " + attemptScore[1] + " near match");
+//                }
+//                if (attemptScore[2] != 1) {
+//                    System.out.print(", " + attemptScore[2] + " miss");
+//                }
+//                if (attemptScore[0] < 4) {
+//                    attemptsRemaining--;
+//                    if (attemptsRemaining > 1) {
+//                        System.out.println("\n" + attemptsRemaining + " attempts left!");
+//                    } else if (attemptsRemaining == 1) {
+//                        System.out.println("\n" + attemptsRemaining + " attempt left! Your next attempt MUST be correct.");
+//                    } else {
+//                        System.out.println("\n" + attemptsRemaining + " attempts left! You have run out of attempts.");
+//        //TODO When i == 0 , print lose statement and answer.(Paul)
+//                        System.out.println("You did not break the code.");
+//                        //Thank player for playing.
+//                        System.out.println("\nTHANKS FOR PLAYING.");
+//                    }
+//                    numGuess++;
+//                }
+//        //TODO When guess is correct, print win statement.(Paul)
+//                //If the player breaks the code, congratulate the player.
+//                else {
+//                    codesBroken = true;
+//                    System.out.println("\n\nWELL DONE!");
+//                    System.out.println("YOU BROKE THE CODE!");
+//                    //Thank player for playing.
+//                    System.out.println("\nTHANKS FOR PLAYING.");
+//                }
+//            }
+//        }
 
 
     }
@@ -66,7 +129,8 @@ public class CodeBreaker {
             input.add(0, entry % 10);
             entry = entry / 10;
         }
-            //System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
+//            System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
+
     }
 
 
@@ -80,45 +144,12 @@ public class CodeBreaker {
                 if (i == j)
                     bCount++;
         bCount = bCount - aCount;
-        count++;
-        codebreakNum();
-        //System.out.printf("%dA%dB", aCount, bCount);
-        //System.out.println();
+        System.out.printf("%dA%dB", aCount, bCount);
+        System.out.println();
 
         aCount = 0;
         bCount = 0;
     }
 
-    //Test purposes
-    public static void codebreakNum() {
-        if (count == 1) {
-            System.out.println("\n Try again! Six tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 2) {
-            System.out.println("Try again! Five tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 3) {
-            System.out.println("Try again! Four tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 4) {
-            System.out.println("Try again! Three tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 5) {
-            System.out.println("Try again! Two tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 6) {
-            System.out.println("Try again! One tries left");
-            System.out.printf("%dA%dB", aCount, bCount);
-        }
-        if (count == 7) {
-            System.out.println("You did not crack the code!");
-            System.out.println("GAME OVER! The code is " + answer);
-        }
-    }
 
 }
