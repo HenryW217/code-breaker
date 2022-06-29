@@ -4,13 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CodeBreaker {
-    /*Terms:
-    The system generated 4 digit #, ref as "answer";
-    Use "i" for guesses count, the reason we count down is for future usage if we print "lives left";
-    playerEntry is the guesses the player entered;
 
-     */
-    private static int guessLeft = 7;
+    private static int attemptsLeft = 7;
     private static ArrayList answer = new ArrayList();
     private static ArrayList input = new ArrayList();
 
@@ -21,12 +16,6 @@ public class CodeBreaker {
 
 
     public static void main(String[] args) {
-
-        int numGuess = 1;    //Number of attempts made.
-        int attemptsRemaining = guessLeft;  //Number of attempts remaining.
-        boolean codesBroken = false;  //Flag indicating an attempted code matches the game code.
-        int[] attemptScore = new int[3];  //The score of the latest attempt.
-
 
 
         CodeBreaker playerGuess = new CodeBreaker();
@@ -53,13 +42,28 @@ public class CodeBreaker {
         System.out.println("***Test purpose only, the answer is: " + answer + " ***"); // TODO !!!This line is to test only, remove after code complete!!!
 
 // Create the loop
-        while (true){
-            playerGuess.playerEntry();
-            playerGuess.compareInput();
-            input.clear();
 
 
-        }
+            do {
+                playerGuess.playerEntry();
+                if (answer.equals(input)){
+                    System.out.println("WELL DONE!");
+                    System.out.println("YOU BROKE THE CODE!");
+                    break;
+                }
+                playerGuess.compareInput();
+                if (attemptsLeft >1){
+                    System.out.println("Please try again, you have " + (attemptsLeft - 1) + " attempts left");
+                }
+                input.clear();
+                attemptsLeft--;
+
+            } while (attemptsLeft > 0);
+
+            if (attemptsLeft == 0){
+                System.out.println("THANKS FOR PLAYING. The answer is " + answer +".");
+            }
+
 
 
 //
@@ -125,7 +129,7 @@ public class CodeBreaker {
             input.add(0, entry % 10);
             entry = entry / 10;
         }
-            System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
+//            System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
 
     }
 
