@@ -57,7 +57,7 @@ public class CodeBreaker {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalidated input, please enter a four-digit NUMBER.");
+                System.out.println("Invalidated input, please enter a Four-digit Number.");
             }
         }
 
