@@ -1,5 +1,8 @@
 package com.tlgjavaproject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class CodeBreaker {
@@ -41,22 +44,21 @@ public class CodeBreaker {
     //                  - player entered numbers;
     //                  - player's input is a four-digit number;
     void playerEntry() {
-        Scanner sc = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int entry;
-
-        while (!sc.hasNextInt()) {
-            System.out.println("Invalidated input, please enter a four-digit NUMBER.");
-            sc.next();
-        }
-        entry = sc.nextInt();
-        int entryLength = String.valueOf(entry).length();
-
-        while (entryLength != 4) {
-            System.out.println("Invalidated input, please enter a FOUR-digit number.");
-            // I have a feeling that these following two line could be re-initialized
-            // in another way, I tried, but break the code. So I'll leave it as is for now.
-            entry = sc.nextInt();
-            entryLength = String.valueOf(entry).length();
+        while (true) {
+            try {
+                String input = reader.readLine();
+                entry = Integer.parseInt(input);
+                if (entry < 0 || entry > 9999){
+                    throw new IllegalArgumentException();
+                }
+                break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalidated input, please enter a four-digit NUMBER.");
+            }
         }
 
         for (int i = 0; i < 4; i++) {
