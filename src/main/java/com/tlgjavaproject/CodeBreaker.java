@@ -53,7 +53,6 @@ public class CodeBreaker {
                 if (entry < 0 || entry > 9999){
                     throw new IllegalArgumentException();
                 }
-                // TODO Check for repeated digits
                 break;
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -61,26 +60,6 @@ public class CodeBreaker {
                 System.out.println("Invalidated input, please enter a four-digit NUMBER.");
             }
         }
-//        Scanner sc = new Scanner(System.in);
-//
-//        while (!sc.hasNextInt()
-//                || String.valueOf(entry = sc.nextInt()).length() != 4
-//                || entry < 0) {
-//            System.out.println("Invalidated input, please enter a four-digit NUMBER.");
-//            sc.next();
-//        }
-/*
-        entry = sc.nextInt();
-        int entryLength = String.valueOf(entry).length();
-
-        while (entryLength != 4 ) {
-            System.out.println("Invalidated input, please enter a FOUR-digit number.");
-            // I have a feeling that these following two line could be re-initialized
-            // in another way, I tried, but break the code. So I'll leave it as is for now.
-            entry = sc.nextInt();
-            entryLength = String.valueOf(entry).length();
-        }
-*/
 
         for (int i = 0; i < 4; i++) {
             input.add(0, entry % 10);
