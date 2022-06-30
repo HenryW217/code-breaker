@@ -5,8 +5,8 @@ import java.util.*;
 public class CodeBreaker {
 
     public static int attemptsLeft = 7;
-    public static ArrayList answer = new ArrayList();
-    public static ArrayList input = new ArrayList();
+    public static ArrayList<Integer> answer = new ArrayList<>();
+    public static ArrayList<Integer> input = new ArrayList<>();
     private static int aCount = 0;
     private static int bCount = 0;
 
@@ -22,8 +22,8 @@ public class CodeBreaker {
         System.out.println("You have 7 opportunities to win the game. Let's play!");
     }
 
-    void answerGenerator(){
-        ArrayList list = new ArrayList();    // To generate an Array list from 0 to 9;
+    void answerGenerator() {
+        ArrayList<Integer> list = new ArrayList<>();    // To generate an Array list from 0 to 9;
         for (int l = 0; l < 10; l++)    // "l" for the 0 - 9 list;
             list.add(l);
 
@@ -45,28 +45,28 @@ public class CodeBreaker {
 //            System.out.println("***Test purpose, player entry is: " + input + " ***");// TODO !!!This line is to test only, remove after code complete!!!
     }
 
-    static boolean inputValidator(ArrayList input){
+    static boolean inputValidator() {
 
-            for (int j = 0; j < CodeBreaker.input.size(); j++)
-                for (int k = j+1; k < CodeBreaker.input.size(); k++)
+        for (int j = 0; j < CodeBreaker.input.size(); j++)
+            for (int k = j + 1; k < CodeBreaker.input.size(); k++)
 
-            if (k != j && CodeBreaker.input.get(k) == CodeBreaker.input.get(j)){
-                return true;
-            }
+                if (k != j && Objects.equals(CodeBreaker.input.get(k), CodeBreaker.input.get(j))) {
+                    return true;
+                }
         return false;
     }
 
     // Create compare result method.
     void compareInput() {
         for (int i = 0; i < 4; i++)
-            if (answer.get(i) == input.get(i))
+            if (Objects.equals(answer.get(i), input.get(i)))
                 aCount++;
         for (Object i : answer)
             for (Object j : input)
                 if (i == j)
                     bCount++;
         bCount = bCount - aCount;
-        if (inputValidator(input) == false){
+        if (!inputValidator()) {
             System.out.printf("%dA%dB", aCount, bCount);
             System.out.println();
         }
@@ -74,8 +74,6 @@ public class CodeBreaker {
         aCount = 0;
         bCount = 0;
     }
-
-
 
 
 }

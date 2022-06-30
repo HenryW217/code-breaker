@@ -1,7 +1,5 @@
 package com.tlgjavaproject;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class CodeBreakerUI extends CodeBreaker {
 
@@ -19,19 +17,19 @@ public class CodeBreakerUI extends CodeBreaker {
         do {
             playerGuess.playerEntry();
 
-            if (inputValidator(input) == true){
+            if (inputValidator()) {
                 System.out.println("Invalidated entry, please try again.");
                 attemptsLeft++;
             }
 
 
-            if (answer.equals(input)){
+            if (answer.equals(input)) {
                 System.out.println("WELL DONE!");
                 System.out.println("YOU BROKE THE CODE!");
                 break;
             }
             playerGuess.compareInput();
-            if (attemptsLeft >1 && inputValidator(input) == false){
+            if (attemptsLeft > 1 && !inputValidator()) {
                 System.out.println("Please try again, you have " + (attemptsLeft - 1) + " attempts left");
 
             }
@@ -41,16 +39,12 @@ public class CodeBreakerUI extends CodeBreaker {
 
         } while (attemptsLeft > 0);
 
-        if (attemptsLeft == 0){
-            System.out.println("THANKS FOR PLAYING. The answer is " + answer +".");
+        if (attemptsLeft == 0) {
+            System.out.println("THANKS FOR PLAYING. The answer is " + answer + ".");
         }
 
 
     }
-
-
-
-
 
 
 }
