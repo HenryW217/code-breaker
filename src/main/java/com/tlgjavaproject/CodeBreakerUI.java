@@ -15,7 +15,7 @@ public class CodeBreakerUI extends CodeBreaker {
             playerGuess.playerEntry();
 
             if (inputValidator()) {
-                System.out.println("Invalidated entry, please try again.");
+                System.out.println("Duplicate entry detected, please try again.");
                 attemptsLeft++;
             }
 
